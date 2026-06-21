@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bright Work Solutions × Salta Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #000; color: #f5f5f7; overflow-x: hidden; }
+
+/* ── HERO ── */
+#hero { width:100vw; height:100vh; background:#000; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; cursor:pointer; }
+#hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0,0,0,0.8) 100%); pointer-events:none; z-index:2; }
+#particles { position:absolute; inset:0; z-index:0; }
+#caption { position:relative; z-index:10; text-align:center; padding:0 2rem; max-width:860px; }
+.eyebrow { display:block; font-size:clamp(10px,1.2vw,12px); letter-spacing:0.22em; text-transform:uppercase; color:#1B9AAA; margin-bottom:1.4rem; opacity:0; transform:translateY(10px); transition:opacity 0.7s ease,transform 0.7s ease; }
+.headline { display:block; font-size:clamp(38px,6.5vw,80px); font-weight:700; line-height:1.08; letter-spacing:-0.03em; color:#f5f5f7; opacity:0; transform:translateY(18px); transition:opacity 1s ease,transform 1s cubic-bezier(0.22,1,0.36,1); }
+.headline.sub { font-weight:300; font-size:clamp(20px,3vw,38px); color:rgba(245,245,247,0.5); letter-spacing:-0.01em; margin-top:0.2em; }
+.gold { color:#F0A500; } .teal { color:#1B9AAA; }
+#pbar { position:fixed; bottom:0; left:0; height:2px; background:#1B9AAA; width:0%; z-index:200; transition:width linear; }
+#dots { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); display:flex; gap:7px; z-index:200; }
+.dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.18); transition:background 0.4s,transform 0.4s; }
+.dot.on { background:#1B9AAA; transform:scale(1.6); }
+#hint { position:fixed; bottom:24px; right:28px; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.18); z-index:200; }
+#scrollcue { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:0; transition:opacity 1s ease; }
+#scrollcue.show { opacity:1; }
+.scrolllabel { font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.scrollarrow { width:1px; height:32px; background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent); }
+
+/* ── SECTIONS ── */
+section { width:100%; min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:clamp(4rem,10vh,7rem) clamp(2rem,8vw,8rem); position:relative; overflow:hidden; }
+section.light { background:#fff; color:#1d1d1f; }
+section.offwhite { background:#f5f5f7; color:#1d1d1f; }
+section.dark { background:#000; color:#f5f5f7; }
+section.darkblue { background:#050d18; color:#f5f5f7; }
+
+.section-eyebrow { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#1B9AAA; margin-bottom:1.2rem; font-weight:400; }
+.section-eyebrow.amber { color:#F0A500; }
+.section-title { font-size:clamp(32px,5vw,62px); font-weight:700; line-height:1.1; letter-spacing:-0.025em; max-width:700px; margin-bottom:1.2rem; }
+.section-title.light-text { color:#f5f5f7; }
+.section-title.dark-text { color:#1d1d1f; }
+.section-lead { font-size:clamp(15px,1.6vw,19px); font-weight:300; line-height:1.7; max-width:600px; color:rgba(29,29,31,0.65); margin-bottom:2.5rem; }
+.section-lead.light { color:rgba(245,245,247,0.6); }
+.divider { width:40px; height:2px; background:#1B9AAA; border-radius:2px; margin:1.2rem 0; }
+.divider.amber { background:#F0A500; }
+
+/* ── CARDS ── */
+.card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:1rem; }
+.card { border-radius:14px; padding:1.4rem 1.5rem; transition:transform 0.25s ease; }
+.card:hover { transform:translateY(-3px); }
+.card.dark-card { background:rgba(255,255,255,0.05); border:0.5px solid rgba(255,255,255,0.1); }
+.card.light-card { background:#fff; border:0.5px solid rgba(0,0,0,0.08); box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+.card.teal-card { background:rgba(27,154,170,0.08); border:0.5px solid rgba(27,154,170,0.2); }
+.card-num { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#1B9AAA; margin-bottom:6px; }
+.card-num.amber { color:#F0A500; }
+.card-title { font-size:16px; font-weight:600; margin-bottom:6px; }
+.card-title.dark { color:#1d1d1f; }
+.card-body { font-size:13px; line-height:1.65; color:rgba(245,245,247,0.5); }
+.card-body.dark { color:rgba(29,29,31,0.6); }
+
+/* ── FLOW ── */
+.flow-chain { display:flex; flex-direction:column; gap:12px; margin-top:1.5rem; max-width:680px; }
+.flow-step { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.05); border:0.5px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 18px; }
+.flow-num { width:28px; height:28px; border-radius:50%; background:#1B9AAA; color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.flow-title { font-size:14px; font-weight:600; color:#f5f5f7; margin-bottom:2px; }
+.flow-desc { font-size:12px; color:rgba(245,245,247,0.5); }
+
+/* ── 70-20-10 ── */
+.learn-blocks { display:flex; gap:12px; margin-top:1.5rem; flex-wrap:wrap; }
+.learn-block { flex:1; min-width:160px; border-radius:12px; padding:1.4rem; text-align:center; }
+.learn-block.b70 { background:rgba(27,154,170,0.12); border:0.5px solid rgba(27,154,170,0.25); }
+.learn-block.b20 { background:rgba(240,165,0,0.1); border:0.5px solid rgba(240,165,0,0.2); }
+.learn-block.b10 { background:rgba(255,255,255,0.05); border:0.5px solid rgba(255,255,255,0.1); }
+.learn-pct { font-size:48px; font-weight:900; line-height:1; margin-bottom:6px; }
+.b70 .learn-pct { color:#1B9AAA; }
+.b20 .learn-pct { color:#F0A500; }
+.b10 .learn-pct { color:rgba(245,245,247,0.4); }
+.learn-label { font-size:13px; font-weight:600; color:#f5f5f7; margin-bottom:4px; }
+.learn-desc { font-size:11px; color:rgba(245,245,247,0.45); line-height:1.55; }
+
+/* ── RUNGS ── */
+.rungs { display:flex; flex-direction:column; gap:12px; margin-top:1.5rem; max-width:620px; }
+.rung { display:flex; align-items:flex-start; gap:14px; border-radius:10px; padding:14px 16px; }
+.rung.r1 { background:rgba(27,154,170,0.08); border:0.5px solid rgba(27,154,170,0.2); }
+.rung.r2 { background:rgba(240,165,0,0.07); border:0.5px solid rgba(240,165,0,0.2); }
+.rung.r3 { background:rgba(53,120,200,0.08); border:0.5px solid rgba(53,120,200,0.2); }
+.rung-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+.rd-teal { background:#1B9AAA; } .rd-amber { background:#F0A500; } .rd-blue { background:#3578C8; }
+.rung-name { font-size:14px; font-weight:600; color:#f5f5f7; margin-bottom:3px; }
+.rung-desc { font-size:12px; color:rgba(245,245,247,0.5); line-height:1.6; }
+.rung-tag { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#1B9AAA; margin-bottom:4px; }
+.rung-tag.amber { color:#F0A500; } .rung-tag.blue { color:#3578C8; }
+
+/* ── TOOL FLOW ── */
+.tool-flow { display:flex; flex-direction:column; gap:0; margin-top:1.5rem; max-width:700px; }
+.tool-row { display:flex; align-items:stretch; gap:0; }
+.tool-arrow-wrap { display:flex; flex-direction:column; align-items:center; padding:0 8px; }
+.tool-arrow-line { width:2px; background:rgba(27,154,170,0.2); flex:1; }
+.tool-arrow-head { color:#1B9AAA; font-size:14px; margin-top:-4px; }
+.tool-card { flex:1; background:#fff; border:0.5px solid rgba(0,0,0,0.08); border-radius:12px; padding:1.1rem 1.2rem; box-shadow:0 2px 16px rgba(0,0,0,0.06); margin-bottom:10px; }
+.tool-tag { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
+.tool-name { font-size:16px; font-weight:700; color:#1d1d1f; margin-bottom:4px; }
+.tool-desc { font-size:12px; color:rgba(29,29,31,0.6); line-height:1.6; }
+.tool-sub { font-size:11px; color:rgba(29,29,31,0.4); margin-top:4px; font-style:italic; }
+
+/* ── EXAMPLE TABLE ── */
+.example-table { width:100%; max-width:800px; border-collapse:collapse; margin-top:1.5rem; }
+.example-table th { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,245,247,0.35); padding:8px 12px; text-align:left; border-bottom:0.5px solid rgba(255,255,255,0.08); }
+.example-table td { font-size:13px; padding:12px; vertical-align:top; border-bottom:0.5px solid rgba(255,255,255,0.05); color:rgba(245,245,247,0.8); line-height:1.55; }
+.example-table td:first-child { color:#1B9AAA; font-weight:600; white-space:nowrap; }
+
+/* ── PEOPLE ── */
+.people-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:2rem; max-width:680px; }
+.person-card { background:#fff; border:0.5px solid rgba(0,0,0,0.08); border-radius:14px; padding:1.6rem; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+.person-initial { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#fff; margin-bottom:1rem; }
+.pi-teal { background:linear-gradient(135deg,#1B9AAA,#0d7a88); }
+.pi-amber { background:linear-gradient(135deg,#F0A500,#c88600); }
+.person-name { font-size:16px; font-weight:700; color:#1d1d1f; margin-bottom:2px; }
+.person-role { font-size:12px; color:#1B9AAA; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1rem; }
+.person-exp { font-size:12px; color:rgba(29,29,31,0.6); line-height:1.65; }
+.person-contact { font-size:11px; color:rgba(29,29,31,0.4); margin-top:0.8rem; }
+
+/* ── BIG QUOTE ── */
+.big-quote { font-size:clamp(22px,3.8vw,46px); font-weight:600; line-height:1.25; letter-spacing:-0.02em; max-width:720px; }
+.big-quote em { font-style:normal; color:#F0A500; }
+
+/* ── SALTARE TAG ── */
+.saltare-tag { display:inline-block; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#F0A500; border:0.5px solid rgba(240,165,0,0.3); border-radius:4px; padding:3px 10px; margin-bottom:1.2rem; }
+
+/* ── CTA ── */
+.cta-wrap { margin-top:2.5rem; display:flex; gap:14px; flex-wrap:wrap; }
+.cta-btn { display:inline-block; padding:14px 32px; border-radius:30px; font-size:14px; font-weight:600; letter-spacing:0.04em; text-decoration:none; cursor:pointer; transition:transform 0.2s ease,box-shadow 0.2s ease; }
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.cta-primary { background:#1B9AAA; color:#fff; }
+.cta-ghost { background:transparent; border:0.5px solid rgba(255,255,255,0.3); color:#f5f5f7; }
+
+/* ── REGIO ── */
+.regio-block { display:flex; align-items:center; gap:12px; background:rgba(27,154,170,0.08); border:0.5px solid rgba(27,154,170,0.2); border-radius:10px; padding:14px 18px; max-width:420px; margin-top:1.5rem; }
+.regio-name { font-size:15px; font-weight:600; color:#1B9AAA; }
+.regio-sub { font-size:12px; color:rgba(245,245,247,0.45); margin-top:2px; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.8s ease,transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.reveal.visible { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:0.1s; } .reveal-delay-2 { transition-delay:0.2s; }
+.reveal-delay-3 { transition-delay:0.32s; } .reveal-delay-4 { transition-delay:0.44s; }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:300; padding:1.1rem clamp(1.5rem,5vw,4rem); display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.6); backdrop-filter:blur(12px); border-bottom:0.5px solid rgba(255,255,255,0.08); }
+.nav-logo { font-size:16px; font-weight:700; color:#f5f5f7; letter-spacing:-0.01em; }
+.nav-logo span { color:#1B9AAA; }
+.nav-links { display:flex; gap:2rem; }
+.nav-links a { font-size:12px; color:rgba(255,255,255,0.5); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
+.nav-links a:hover { color:#fff; }
+
+@keyframes saltJump {
+  0%   { transform:translateX(-50%) translateY(0) rotate(0deg) scale(1); opacity:0.8; }
+  30%  { transform:translateX(-20%) translateY(-70px) rotate(-18deg) scale(1.2); opacity:1; }
+  60%  { transform:translateX(20%) translateY(-40px) rotate(10deg) scale(1.1); }
+  100% { transform:translateX(60%) translateY(0) rotate(0deg) scale(1); opacity:0; }
+}
+.jumper-fixed { position:fixed; bottom:15%; left:50%; font-size:2.2rem; opacity:0; z-index:500; pointer-events:none; transform:translateX(-50%); }
+.jumper-fixed.go { animation:saltJump 1.8s cubic-bezier(0.34,1.2,0.64,1) forwards; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Bright<span>Work</span> Solutions</div>
+  <div class="nav-links">
+    <a href="#vraagstukken">Wat er speelt</a>
+    <a href="#oplossing">De aanpak</a>
+    <a href="#tools">Tools</a>
+    <a href="#samenwerking">Samenwerking</a>
+  </div>
+</nav>
+
+<div id="hero">
+  <canvas id="particles"></canvas>
+  <div id="caption">
+    <span class="eyebrow" id="ey"></span>
+    <span class="headline" id="h1"></span>
+    <span class="headline sub" id="h2"></span>
+  </div>
+  <div id="scrollcue">
+    <div class="scrolllabel">scroll verder</div>
+    <div class="scrollarrow"></div>
+  </div>
+</div>
+
+<div id="pbar"></div>
+<div id="dots"></div>
+<div id="hint">klik · pauzeer</div>
+<div class="jumper-fixed" id="jumper">🏃</div>
+
+<!-- SECTION 1: Wat er speelt -->
+<section class="dark" id="vraagstukken" style="padding-top:7rem;">
+  <div class="section-eyebrow reveal">Wat er speelt</div>
+  <h2 class="section-title light-text reveal reveal-delay-1">Drie vraagstukken<br>die tegelijk spelen.</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <p class="section-lead light reveal reveal-delay-2">De arbeidsmarkt staat onder druk. Niet door één oorzaak, maar door drie ontwikkelingen die elkaar versterken.</p>
+  <div class="card-grid reveal reveal-delay-3">
+    <div class="card dark-card">
+      <div class="card-num">01</div>
+      <div class="card-title">Arbeidsmarktkrapte</div>
+      <div class="card-body">Structurele schaarste. Niet tijdelijk, maar structureel. Vergrijzing, uitstroom en te weinig instroom in cruciale sectoren.</div>
+    </div>
+    <div class="card dark-card">
+      <div class="card-num">02</div>
+      <div class="card-title">Arbeidsproductiviteit</div>
+      <div class="card-body">Met dezelfde — of minder — mensen meer werk doen. Technologie helpt, maar alleen als mensen de juiste skills hebben.</div>
+    </div>
+    <div class="card dark-card">
+      <div class="card-num">03</div>
+      <div class="card-title">Werk verandert</div>
+      <div class="card-body">Robots, AI, automatisering en maatschappelijke transities veranderen wat werk inhoudt. Niet beroepen verdwijnen — de inhoud van werk verschuift, en daarmee de skills die nodig zijn.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Paradox -->
+<section class="darkblue">
+  <div class="saltare-tag reveal">de paradox</div>
+  <div class="big-quote reveal reveal-delay-1">
+    Werk verandert razend snel.<br>
+    Maar we blijven <em>grotendeels hetzelfde doen.</em>
+  </div>
+  <div class="divider amber reveal reveal-delay-2"></div>
+  <p class="section-lead light reveal reveal-delay-2">Een diploma doet een mens tekort. Want leren gebeurt overal — niet alleen in de klas.</p>
+
+  <div class="learn-blocks reveal reveal-delay-3">
+    <div class="learn-block b70">
+      <div class="learn-pct">70%</div>
+      <div class="learn-label">Op de werkvloer</div>
+      <div class="learn-desc">Leren door doen, ervaren en fouten maken in de praktijk</div>
+    </div>
+    <div class="learn-block b20">
+      <div class="learn-pct">20%</div>
+      <div class="learn-label">Van elkaar</div>
+      <div class="learn-desc">Feedback, coaching en samenwerken met collega's</div>
+    </div>
+    <div class="learn-block b10">
+      <div class="learn-pct">10%</div>
+      <div class="learn-label">Formeel</div>
+      <div class="learn-desc">Cursussen, trainingen en klassikaal onderwijs</div>
+    </div>
+  </div>
+  <p class="section-lead light reveal reveal-delay-4" style="margin-top:1.5rem; margin-bottom:0;">Juist daarom is het zo belangrijk dat leeruitkomsten klein, concreet en direct gekoppeld zijn aan wat iemand op de werkvloer nodig heeft.</p>
+</section>
+
+<!-- SECTION 3: De aanpak -->
+<section class="light" id="oplossing">
+  <div class="section-eyebrow reveal">De aanpak</div>
+  <h2 class="section-title dark-text reveal reveal-delay-1">Van functieprofiel<br>naar leeruitkomst.</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <p class="section-lead reveal reveal-delay-2">Skills bestaan op drie niveaus. Pas als je dat onderscheid maakt, kun je opleiding en arbeidsmarkt écht verbinden.</p>
+  <div class="rungs">
+    <div class="rung r1 reveal reveal-delay-2">
+      <div class="rung-dot rd-teal"></div>
+      <div>
+        <div class="rung-tag">Niveau 1</div>
+        <div class="rung-name" style="color:#1d1d1f;">Generieke competenties</div>
+        <div class="rung-desc" style="color:rgba(29,29,31,0.6);">Brugfunctie tussen beroepen. Voor loopbaanoriëntatie en matching.</div>
+      </div>
+    </div>
+    <div class="rung r2 reveal reveal-delay-3">
+      <div class="rung-dot rd-amber"></div>
+      <div>
+        <div class="rung-tag amber">Niveau 2</div>
+        <div class="rung-name" style="color:#1d1d1f;">Specifieke skills</div>
+        <div class="rung-desc" style="color:rgba(29,29,31,0.6);">Functiespecifiek. Voor loopbaanpaden en personeelsplanning.</div>
+      </div>
+    </div>
+    <div class="rung r3 reveal reveal-delay-4">
+      <div class="rung-dot rd-blue"></div>
+      <div>
+        <div class="rung-tag blue">Niveau 3</div>
+        <div class="rung-name" style="color:#1d1d1f;">Subskills & taken</div>
+        <div class="rung-desc" style="color:rgba(29,29,31,0.6);">Gekoppeld aan concreet gedrag — kennis + vaardigheid + verantwoordelijkheid = leeruitkomst. Dit is waar opleiding en werkvloer elkaar raken.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: Concreet voorbeeld -->
+<section class="darkblue">
+  <div class="section-eyebrow reveal">Concreet voorbeeld — Gemeente Amersfoort</div>
+  <h2 class="section-title light-text reveal reveal-delay-1">Van taak naar <span class="teal">leeruitkomst.</span></h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <table class="example-table reveal reveal-delay-3">
+    <thead>
+      <tr>
+        <th>Taak</th>
+        <th>Kennis (moet weten)</th>
+        <th>Vaardigheid (moet kunnen)</th>
+        <th>Leeruitkomst</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identiteit vaststellen</td>
+        <td>Wetgeving rondom identiteitsvaststelling, Paspoortwet</td>
+        <td>Echtheidskenmerken controleren en beoordelen</td>
+        <td>Medewerker kan zelfstandig de identiteit van een aanvrager vaststellen conform de Paspoortwet</td>
+      </tr>
+      <tr>
+        <td>Gegevens verstrekken</td>
+        <td>AVG; grondslag voor gegevensverstrekking</td>
+        <td>Rechtmatigheid beoordelen en weigeren bij onrechtmatige verzoeken</td>
+        <td>Medewerker kan verzoeken beoordelen en gegevens verstrekken conform wet- en regelgeving</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="regio-block reveal reveal-delay-4">
+    <div style="font-size:22px;">📍</div>
+    <div>
+      <div class="regio-name">Regio Amersfoort — Talentshare</div>
+      <div class="regio-sub">Werkgevers · Opleiders · Gemeente · Medewerkers</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: Tools -->
+<section class="offwhite" id="tools">
+  <div class="section-eyebrow reveal">Onze instrumenten</div>
+  <h2 class="section-title dark-text reveal reveal-delay-1">Drie tools.<br>Één richting.</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <p class="section-lead reveal reveal-delay-2">Van functieprofiel naar skillsprofiel naar leeruitkomst — gekoppeld aan de opleidingen van Salta.</p>
+
+  <div class="flow-chain reveal reveal-delay-3">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div>
+        <div class="flow-title">Taakanalyse — ESCO & CompetentNL</div>
+        <div class="flow-desc">Functieprofielen omzetten naar skillsprofielen. De gemeenschappelijke Europese taal voor beroepen en competenties.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num" style="background:#F0A500;">2</div>
+      <div>
+        <div class="flow-title">Arbeidsmarktdata — Lightcast</div>
+        <div class="flow-desc">Skills koppelen aan leeruitkomsten via real-time marktdata. Welke skills vragen werkgevers, nu en straks?</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num" style="background:#3578C8;">3</div>
+      <div>
+        <div class="flow-title">Leeruitkomsten koppelen aan Salta-opleidingen</div>
+        <div class="flow-desc">Kennis + vaardigheid + verantwoordelijkheid = leeruitkomst. Modulaire opbouw, direct gekoppeld aan de praktijk.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: Wie zijn wij -->
+<section class="light" id="wie">
+  <div class="section-eyebrow reveal">Wie zijn wij</div>
+  <h2 class="section-title dark-text reveal reveal-delay-1">Bright Work Solutions</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <p class="section-lead reveal reveal-delay-2">Gespecialiseerd partner voor werken met skills — advies, technologie en training.</p>
+  <div class="people-grid reveal reveal-delay-3">
+    <div class="person-card">
+      <div class="person-initial pi-teal">ML</div>
+      <div class="person-name">Marjan Lancee</div>
+      <div class="person-role">Partner & Co-founder</div>
+      <div class="person-exp">Duurzame inzetbaarheid bij Matchcare · Coöperatie WIJIJ · Partnership Manager Arbeidsmatchplatform · VNO NCW / NLWerktaanWerk</div>
+      <div class="person-contact">marjan@brightworksolutions.nl · 06 41077991</div>
+    </div>
+    <div class="person-card">
+      <div class="person-initial pi-amber">KH</div>
+      <div class="person-name">Kim Hooiveld</div>
+      <div class="person-role">Founder</div>
+      <div class="person-exp">HRM bij Wehkamp, ICS en ABN AMRO · Economic Boards Amsterdam en Arnhem Nijmegen · Programma Directeur House of Skills · Lead Consultant Work With Skills (Energiesector)</div>
+      <div class="person-contact">kim@brightworksolutions.nl · 06 10405691</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: Samenwerking -->
+<section class="dark" id="samenwerking">
+  <div class="saltare-tag reveal">saltare — samen springen</div>
+  <div class="big-quote reveal reveal-delay-1">
+    Geen pitch.<br>
+    <em>Samen een sprong maken</em><br>
+    voor mensen die willen ontwikkelen.
+  </div>
+  <div class="divider amber reveal reveal-delay-2"></div>
+  <p class="section-lead light reveal reveal-delay-3">Salta verzorgt de opleidingen. Bright Work zorgt dat die opleidingen landen als concrete skills en taken bij werkgevers — zodat medewerkers weten wat ze leren, waarom, en hoe het direct toepasbaar is.</p>
+  <div class="card-grid reveal reveal-delay-3" style="max-width:700px;">
+    <div class="card teal-card">
+      <div class="card-num">Stap 1</div>
+      <div class="card-title">Verkenning</div>
+      <div class="card-body">Hoe zijn jullie leeruitkomsten nu beschreven? Welke koppeling met de arbeidsmarkt ontbreekt nog?</div>
+    </div>
+    <div class="card teal-card">
+      <div class="card-num">Stap 2</div>
+      <div class="card-title">Pilot</div>
+      <div class="card-body">Één opleiding: functies → skills → taken → leercontent. Met ESCO en Lightcast voor regio Amersfoort.</div>
+    </div>
+    <div class="card teal-card">
+      <div class="card-num">Stap 3</div>
+      <div class="card-title">Evalueren & opschalen</div>
+      <div class="card-body">Samen beoordelen wat werkt — voor medewerkers, opleiders en werkgevers. Dan verder.</div>
+    </div>
+  </div>
+  <div class="cta-wrap reveal reveal-delay-4">
+    <a href="mailto:marjan@brightworksolutions.nl" class="cta-btn cta-primary">Neem contact op</a>
+    <a href="#vraagstukken" class="cta-btn cta-ghost">Terug naar boven</a>
+  </div>
+</section>
+
+<script>
+const beats = [
+  { e:'', h1:'De arbeidsmarkt', h2:'verandert sneller dan ooit.', d:3800, jump:false },
+  { e:'maar', h1:'Werk verandert.', h2:'Skills blijven.', d:3600, jump:false },
+  { e:'saltare', h1:'Salta maakt mensen', h2:'klaar voor die sprong.', d:4200, jump:true },
+  { e:'70% leren we op de werkvloer', h1:'Een diploma', h2:'doet een mens tekort.', d:4000, jump:false },
+  { e:'de verbinding', h1:'Skills en taken', h2:'zijn de gemeenschappelijke taal.', d:4000, jump:false },
+  { e:'onze aanpak', h1:'ESCO. Lightcast.', h2:'Leeruitkomsten die landen.', d:4000, jump:false },
+  { e:'saltare', h1:'Samen', h2:'een sprong maken.', d:5000, jump:true },
+];
+
+const eyEl=document.getElementById('ey'), h1El=document.getElementById('h1'), h2El=document.getElementById('h2');
+const pbar=document.getElementById('pbar'), dotsWrap=document.getElementById('dots');
+const jumper=document.getElementById('jumper'), scrollcue=document.getElementById('scrollcue');
+let idx=0, paused=false, timer=null, beatStart=0, pausedAt=0;
+
+beats.forEach((_,i)=>{ const d=document.createElement('div'); d.className='dot'; d.id='dot'+i; dotsWrap.appendChild(d); });
+function setDot(i){ document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===i)); }
+
+function showBeat(i){
+  const b=beats[i]; setDot(i);
+  [eyEl,h1El,h2El].forEach(el=>{ el.style.transition='none'; el.style.opacity='0'; el.style.transform='translateY(16px)'; });
+  eyEl.textContent=b.e; eyEl.style.color=b.e==='saltare'?'#F0A500':'#1B9AAA';
+  h1El.innerHTML=b.h1.replace('Samen','<span class="gold">Samen</span>').replace('Een diploma','<span style="color:rgba(245,245,247,0.5);font-weight:300">Een diploma</span>');
+  h2El.innerHTML=b.h2.replace('sprong','<span class="gold">sprong</span>').replace('landen','<span class="teal">landen</span>').replace('tekort','<span class="gold">tekort</span>');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(b.e){ setTimeout(()=>{ eyEl.style.transition='opacity 0.7s ease,transform 0.7s ease'; eyEl.style.opacity='1'; eyEl.style.transform='translateY(0)'; },80); }
+    setTimeout(()=>{ h1El.style.transition='opacity 0.9s ease,transform 0.9s cubic-bezier(0.22,1,0.36,1)'; h1El.style.opacity='1'; h1El.style.transform='translateY(0)'; },b.e?300:120);
+    setTimeout(()=>{ h2El.style.transition='opacity 0.9s ease,transform 0.9s cubic-bezier(0.22,1,0.36,1)'; h2El.style.opacity='1'; h2El.style.transform='translateY(0)'; },b.e?560:380);
+  }));
+  if(b.jump){ setTimeout(()=>{ jumper.classList.remove('go'); void jumper.offsetWidth; jumper.style.opacity='1'; jumper.classList.add('go'); setTimeout(()=>{ jumper.style.opacity='0'; jumper.classList.remove('go'); },1900); },1000); }
+  pbar.style.transition='none'; pbar.style.width='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ pbar.style.transition=`width ${b.d}ms linear`; pbar.style.width='100%'; }));
+  beatStart=Date.now(); pausedAt=0;
+  clearTimeout(timer); timer=setTimeout(advance,b.d);
+}
+
+function advance(){
+  if(paused)return;
+  [eyEl,h1El,h2El].forEach(el=>{ el.style.transition='opacity 0.4s ease,transform 0.4s ease'; el.style.opacity='0'; el.style.transform='translateY(-10px)'; });
+  setTimeout(()=>{
+    if(paused)return;
+    if(idx<beats.length-1){ idx++; showBeat(idx); }
+    else { scrollcue.classList.add('show'); document.getElementById('hint').style.display='none'; pbar.style.display='none'; dotsWrap.style.display='none'; }
+  },450);
+}
+
+document.getElementById('hero').addEventListener('click',()=>{
+  paused=!paused;
+  const hint=document.getElementById('hint');
+  if(paused){ clearTimeout(timer); pausedAt=Date.now()-beatStart; pbar.style.transition='none'; pbar.style.width=Math.min((pausedAt/beats[idx].d)*100,100)+'%'; hint.textContent='klik · doorgaan'; }
+  else { const rem=beats[idx].d-pausedAt; beatStart=Date.now()-pausedAt; pbar.style.transition=`width ${rem}ms linear`; pbar.style.width='100%'; timer=setTimeout(advance,rem); hint.textContent='klik · pauzeer'; }
+});
+document.addEventListener('keydown',e=>{ if(e.key===' '){ document.getElementById('hero').click(); e.preventDefault(); } });
+
+const canvas=document.getElementById('particles'), ctx=canvas.getContext('2d');
+function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize',resizeCanvas);
+let pts=[];
+for(let i=0;i<70;i++) pts.push(mkPt());
+function mkPt(){ return { x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.3+0.3, vx:(Math.random()-.5)*0.25, vy:-Math.random()*0.35-0.05, a:Math.random()*0.35+0.05, c:Math.random()>.65?'#F0A500':'#1B9AAA' }; }
+(function animPts(){ ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c; ctx.globalAlpha=p.a; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.y<-5)Object.assign(p,mkPt(),{y:canvas.height+5}); }); ctx.globalAlpha=1; requestAnimationFrame(animPts); })();
+
+const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); }); },{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+showBeat(0);
+</script>
+</body>
+</html>
