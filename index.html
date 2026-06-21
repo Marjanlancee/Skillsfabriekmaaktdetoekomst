@@ -154,6 +154,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:300; padding:1rem clamp(1.
   <div class="nav-logo" onclick="restartFilm()">Bright<span>Work</span> Solutions</div>
   <div class="nav-links">
     <a href="#vraagstukken">Wat er speelt</a>
+    <a href="#quiz">Quiz</a>
     <a href="#skills">Skills</a>
     <a href="#aanpak">Aanpak</a>
     <a href="#tools">Tools</a>
@@ -248,7 +249,226 @@ nav { position:fixed; top:0; left:0; right:0; z-index:300; padding:1rem clamp(1.
   </div>
 </section>
 
-<!-- 4. SKILLS -->
+<!-- 4. QUIZ -->
+<section class="offwhite" id="quiz" style="min-height:auto;padding-bottom:5rem;">
+  <div class="section-eyebrow reveal">Even checken</div>
+  <h2 class="section-title reveal reveal-delay-1">Wat weet jij<br>over skills?</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+
+  <div id="quiz-container" class="reveal reveal-delay-3" style="max-width:700px;">
+
+    <!-- Progress -->
+    <div id="quiz-progress" style="display:flex;gap:8px;margin-bottom:2rem;">
+      <div class="qprog" id="qp1" style="flex:1;height:4px;border-radius:2px;background:#1B9AAA;transition:background 0.3s;"></div>
+      <div class="qprog" id="qp2" style="flex:1;height:4px;border-radius:2px;background:#e5e5ea;transition:background 0.3s;"></div>
+      <div class="qprog" id="qp3" style="flex:1;height:4px;border-radius:2px;background:#e5e5ea;transition:background 0.3s;"></div>
+      <div class="qprog" id="qp4" style="flex:1;height:4px;border-radius:2px;background:#e5e5ea;transition:background 0.3s;"></div>
+    </div>
+
+    <!-- VRAAG 1 -->
+    <div class="quiz-step" id="q1">
+      <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#1B9AAA;margin-bottom:0.8rem;font-weight:500;">Vraag 1 van 4</div>
+      <div style="font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#1d1d1f;line-height:1.2;margin-bottom:2rem;">Wat zijn skills eigenlijk?</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <button class="quiz-btn" onclick="selectAnswer(1,'A')">
+          <span class="quiz-letter">A</span>
+          <span>Diploma's en certificaten die je hebt behaald</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(1,'B')">
+          <span class="quiz-letter">B</span>
+          <span>Kennis, vaardigheden en gedrag die je nodig hebt om werk goed uit te voeren</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(1,'C')">
+          <span class="quiz-letter">C</span>
+          <span>Functies en rollen die je hebt bekleed</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(1,'D')">
+          <span class="quiz-letter">D</span>
+          <span>Softwaretools die je kunt gebruiken</span>
+        </button>
+      </div>
+      <div class="quiz-feedback" id="fb1"></div>
+    </div>
+
+    <!-- VRAAG 2 -->
+    <div class="quiz-step" id="q2" style="display:none;">
+      <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#1B9AAA;margin-bottom:0.8rem;font-weight:500;">Vraag 2 van 4</div>
+      <div style="font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#1d1d1f;line-height:1.2;margin-bottom:0.6rem;">Noem eens 5 skills<br>van jezelf.</div>
+      <div style="font-size:15px;color:rgba(29,29,31,0.6);margin-bottom:1.5rem;">Wat kun jij goed? Denk aan wat je doet, niet wat op je CV staat.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;" id="skill-inputs">
+        <input class="quiz-input" placeholder="Skill 1 — bijv. mensen motiveren" id="s1">
+        <input class="quiz-input" placeholder="Skill 2" id="s2">
+        <input class="quiz-input" placeholder="Skill 3" id="s3">
+        <input class="quiz-input" placeholder="Skill 4" id="s4">
+        <input class="quiz-input" placeholder="Skill 5" id="s5">
+      </div>
+      <button class="quiz-next-btn" onclick="showQ2Result()">Bekijk mijn skills →</button>
+      <div class="quiz-feedback" id="fb2"></div>
+    </div>
+
+    <!-- VRAAG 3 -->
+    <div class="quiz-step" id="q3" style="display:none;">
+      <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#1B9AAA;margin-bottom:0.8rem;font-weight:500;">Vraag 3 van 4</div>
+      <div style="font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#1d1d1f;line-height:1.2;margin-bottom:2rem;">Hoeveel skills zijn er?</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <button class="quiz-btn" onclick="selectAnswer(3,'A')">
+          <span class="quiz-letter">A</span>
+          <span>Ongeveer 500</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(3,'B')">
+          <span class="quiz-letter">B</span>
+          <span>Ongeveer 3.000</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(3,'C')">
+          <span class="quiz-letter">C</span>
+          <span>Meer dan 13.000</span>
+        </button>
+        <button class="quiz-btn" onclick="selectAnswer(3,'D')">
+          <span class="quiz-letter">D</span>
+          <span>Meer dan 100.000</span>
+        </button>
+      </div>
+      <div class="quiz-feedback" id="fb3"></div>
+    </div>
+
+    <!-- VRAAG 4 -->
+    <div class="quiz-step" id="q4" style="display:none;">
+      <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#1B9AAA;margin-bottom:0.8rem;font-weight:500;">Vraag 4 van 4</div>
+      <div style="font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#1d1d1f;line-height:1.2;margin-bottom:0.6rem;">Noem een skill die je<br>in je werk gebruikt…</div>
+      <div style="font-size:15px;color:rgba(29,29,31,0.6);margin-bottom:1.5rem;">…maar die je <strong>niet op school hebt geleerd.</strong></div>
+      <input class="quiz-input" placeholder="Bijv. omgaan met boze klanten, prioriteiten stellen..." id="q4input" style="margin-bottom:1.5rem;">
+      <button class="quiz-next-btn" onclick="showQ4Result()">Afronden →</button>
+      <div class="quiz-feedback" id="fb4"></div>
+    </div>
+
+    <!-- AFSLUITING -->
+    <div class="quiz-step" id="q-end" style="display:none;">
+      <div style="font-size:40px;margin-bottom:1rem;">🎉</div>
+      <div style="font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#1d1d1f;line-height:1.2;margin-bottom:1rem;">Precies.</div>
+      <div style="font-size:17px;line-height:1.75;color:rgba(29,29,31,0.75);max-width:560px;margin-bottom:2rem;">
+        Wat je net invulde zijn skills. Dingen die je kunt, die je doet, die waarde hebben.
+      </div>
+      <div id="end-summary" style="background:#EBF8FA;border:1.5px solid rgba(27,154,170,0.25);border-radius:12px;padding:1.4rem;margin-bottom:2rem;font-size:14px;color:#1d1d1f;line-height:1.7;"></div>
+      <a href="#skills" class="quiz-next-btn" style="display:inline-block;text-decoration:none;">Lees meer over skills →</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.quiz-btn {
+  display:flex; align-items:center; gap:14px;
+  background:#fff; border:1.5px solid #e5e5ea; border-radius:12px;
+  padding:14px 18px; cursor:pointer; text-align:left;
+  font-size:15px; color:#1d1d1f; font-family:'Inter',sans-serif;
+  transition:border-color 0.2s, background 0.2s, transform 0.15s;
+  line-height:1.4;
+}
+.quiz-btn:hover { border-color:#1B9AAA; background:#EBF8FA; transform:translateX(4px); }
+.quiz-btn.correct { border-color:#1B9AAA; background:#EBF8FA; color:#1d1d1f; }
+.quiz-btn.wrong { border-color:#ff3b30; background:#fff1f0; color:#1d1d1f; }
+.quiz-btn.disabled { pointer-events:none; }
+.quiz-letter {
+  width:32px; height:32px; border-radius:50%;
+  background:#f5f5f7; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#1d1d1f; flex-shrink:0;
+  transition:background 0.2s, color 0.2s;
+}
+.quiz-btn.correct .quiz-letter { background:#1B9AAA; color:#fff; }
+.quiz-btn.wrong .quiz-letter { background:#ff3b30; color:#fff; }
+.quiz-input {
+  width:100%; padding:14px 16px; border:1.5px solid #e5e5ea; border-radius:10px;
+  font-size:15px; font-family:'Inter',sans-serif; color:#1d1d1f;
+  background:#fff; outline:none; transition:border-color 0.2s;
+}
+.quiz-input:focus { border-color:#1B9AAA; }
+.quiz-next-btn {
+  background:#1B9AAA; color:#fff; border:none; border-radius:30px;
+  padding:14px 32px; font-size:15px; font-weight:600; cursor:pointer;
+  font-family:'Inter',sans-serif; transition:transform 0.2s, box-shadow 0.2s;
+}
+.quiz-next-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(27,154,170,0.3); }
+.quiz-feedback {
+  margin-top:1.2rem; font-size:14px; line-height:1.6;
+  padding:12px 16px; border-radius:10px; display:none;
+}
+.quiz-feedback.show { display:block; }
+.quiz-feedback.correct-fb { background:#EBF8FA; color:#0c5460; border:1px solid rgba(27,154,170,0.2); }
+.quiz-feedback.wrong-fb { background:#fff1f0; color:#721c24; border:1px solid rgba(255,59,48,0.2); }
+.quiz-step { animation: fadeSlide 0.4s ease both; }
+@keyframes fadeSlide { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+</style>
+
+<script>
+const answers = { 1: 'B', 3: 'C' };
+const feedback = {
+  1: {
+    B: '✓ Precies! Skills gaan over wat je kunt en doet — niet over papier. Kennis, vaardigheid en gedrag samen.',
+    wrong: '✗ Niet helemaal. Skills gaan niet over papier of titels, maar over wat je daadwerkelijk kunt.'
+  },
+  3: {
+    C: '✓ Meer dan 13.000! Het Europese ESCO raamwerk beschrijft 13.890 skills en competenties. En toch missen de meeste mensen een compleet skillsprofiel.',
+    wrong: '✗ Het zijn er véél meer. Het Europese ESCO raamwerk beschrijft maar liefst 13.890 skills en competenties.'
+  }
+};
+
+let q2Skills = [];
+let q4Skill = '';
+
+function selectAnswer(q, choice) {
+  const btns = document.querySelectorAll('#q' + q + ' .quiz-btn');
+  const correct = answers[q];
+  const fb = document.getElementById('fb' + q);
+  btns.forEach(b => b.classList.add('disabled'));
+  btns.forEach((b, i) => {
+    const letter = ['A','B','C','D'][i];
+    if(letter === correct) b.classList.add('correct');
+    else if(letter === choice && choice !== correct) b.classList.add('wrong');
+  });
+  const isCorrect = choice === correct;
+  fb.textContent = isCorrect ? feedback[q][correct] : feedback[q].wrong;
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  setTimeout(() => nextQuestion(q), 2200);
+}
+
+function showQ2Result() {
+  q2Skills = ['s1','s2','s3','s4','s5'].map(id => document.getElementById(id).value.trim()).filter(s => s);
+  if(q2Skills.length === 0) { alert('Vul minimaal 1 skill in!'); return; }
+  const fb = document.getElementById('fb2');
+  fb.innerHTML = '✓ Mooi! Je hebt ' + q2Skills.length + ' skills benoemd: <strong>' + q2Skills.join(', ') + '</strong>. Dit zijn echte skills. Ze staan alleen nog nergens beschreven.';
+  fb.className = 'quiz-feedback show correct-fb';
+  setTimeout(() => nextQuestion(2), 2500);
+}
+
+function showQ4Result() {
+  q4Skill = document.getElementById('q4input').value.trim();
+  if(!q4Skill) { alert('Vul iets in!'); return; }
+  const fb = document.getElementById('fb4');
+  fb.innerHTML = '✓ "<strong>' + q4Skill + '</strong>" — ook dat is een skill. Geleerd op de werkvloer. 70% van wat mensen leren, leren ze zo.';
+  fb.className = 'quiz-feedback show correct-fb';
+  setTimeout(() => showEnd(), 2200);
+}
+
+function nextQuestion(current) {
+  document.getElementById('q' + current).style.display = 'none';
+  const next = current + 1;
+  if(next <= 4) {
+    document.getElementById('q' + next).style.display = 'block';
+    document.getElementById('qp' + next).style.background = '#1B9AAA';
+  }
+}
+
+function showEnd() {
+  document.getElementById('q4').style.display = 'none';
+  document.getElementById('q-end').style.display = 'block';
+  const summary = document.getElementById('end-summary');
+  summary.innerHTML = '<strong>Jouw skills:</strong><br>' +
+    (q2Skills.length ? q2Skills.map(s => '· ' + s).join('<br>') : '') +
+    (q4Skill ? '<br>· ' + q4Skill + ' <em>(geleerd op de werkvloer)</em>' : '');
+}
+</script>
+
+<!-- 4. SKILLS (origineel) -->
 <section class="white" id="skills">
   <div style="max-width:700px;">
     <div class="section-eyebrow reveal">Skills</div>
@@ -643,4 +863,4 @@ function animateCount(id, target, finalLabel){
 showBeat(0);
 </script>
 </body>
-</html>
+</html><!-- Dit wordt vervangen door de quiz insert script hieronder -->
