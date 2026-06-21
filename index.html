@@ -160,7 +160,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:300; padding:1rem clamp(1.
 <body>
 
 <nav>
-  <div style="font-size:15px;font-weight:700;color:#f5f5f7;letter-spacing:-0.01em;">Bright Work Solutions</div>
+  <div style="font-size:15px;font-weight:700;color:#f5f5f7;letter-spacing:-0.01em;cursor:pointer;" onclick="restartFilm();">Bright Work Solutions</div>
   <div class="nav-links">
     <a href="#vraagstukken">Wat er speelt</a>
     <a href="#paradox">Methodiek</a>
@@ -528,6 +528,19 @@ if(canvas2){
   let pts2=[];
   for(let i=0;i<50;i++) pts2.push({x:Math.random()*canvas2.width,y:Math.random()*canvas2.height,r:Math.random()*1.2+0.3,vx:(Math.random()-.5)*0.2,vy:-Math.random()*0.3-0.05,a:Math.random()*0.3+0.05,c:Math.random()>.6?'#F0A500':'#1B9AAA'});
   (function anim2(){ ctx2.clearRect(0,0,canvas2.width,canvas2.height); pts2.forEach(p=>{ ctx2.beginPath(); ctx2.arc(p.x,p.y,p.r,0,Math.PI*2); ctx2.fillStyle=p.c; ctx2.globalAlpha=p.a; ctx2.fill(); p.x+=p.vx; p.y+=p.vy; if(p.y<-5){p.y=canvas2.height+5;p.x=Math.random()*canvas2.width;} }); ctx2.globalAlpha=1; requestAnimationFrame(anim2); })();
+}
+
+function restartFilm(){
+  window.scrollTo({top:0, behavior:'smooth'});
+  setTimeout(()=>{
+    idx=0; paused=false;
+    document.getElementById('hint').style.display='block';
+    document.getElementById('hint').textContent='klik · pauzeer';
+    pbar.style.display='block';
+    dotsWrap.style.display='flex';
+    scrollcue.classList.remove('show');
+    showBeat(0);
+  }, 600);
 }
 
 const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); }); },{threshold:0.12});
