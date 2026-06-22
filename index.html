@@ -186,42 +186,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.8rem clamp(1.5rem,
       Skills zijn de kennis, vaardigheden en gedragingen die iemand nodig heeft om werk goed uit te voeren. Ze vormen de verbindende taal tussen wat een opleiding leert en wat een werkgever vraagt. Niet een diploma, maar wat iemand <em style="font-style:normal;color:#1B9AAA;font-weight:600;">daadwerkelijk kan</em> — dat is wat telt.
     </p>
 
-    <div style="margin-top:3rem;">
-      <div style="font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#1d1d1f;margin-bottom:0.4rem;">Noem 5 skills van jezelf.</div>
-      <div style="font-size:14px;color:rgba(29,29,31,0.45);margin-bottom:1.2rem;">Wat kun jij goed? Denk aan wat je doet, niet wat op je CV staat.</div>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.2rem;max-width:560px;">
-        <input class="sq-input" placeholder="Skill 1 — bijv. mensen motiveren" id="ss1">
+    <!-- Vraag 1 -->
+    <div id="vr1" style="margin-top:3rem;">
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:700;color:#1d1d1f;margin-bottom:0.5rem;">Noem 5 skills van jezelf.</div>
+      <div style="font-size:14px;color:rgba(29,29,31,0.45);margin-bottom:1.4rem;">Wat kun jij goed? Denk aan wat je doet, niet wat op je CV staat.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.4rem;max-width:540px;">
+        <input class="sq-input" placeholder="Skill 1" id="ss1">
         <input class="sq-input" placeholder="Skill 2" id="ss2">
         <input class="sq-input" placeholder="Skill 3" id="ss3">
         <input class="sq-input" placeholder="Skill 4" id="ss4">
         <input class="sq-input" placeholder="Skill 5" id="ss5">
       </div>
-      <button class="sq-next" onclick="showSkills()">Bekijk →</button>
-      <div id="skills-result" style="display:none;margin-top:1rem;padding:14px 18px;background:#EBF8FA;border:1.5px solid rgba(27,154,170,0.25);border-radius:12px;font-size:14px;color:#1d1d1f;line-height:1.8;max-width:560px;"></div>
+      <button class="sq-next" onclick="toonVraag(2)">Volgende →</button>
     </div>
 
-    <div style="margin-top:3rem;">
-      <div style="font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#1d1d1f;margin-bottom:1.2rem;">Wat is het verschil tussen competenties en skills?</div>
-      <div style="display:flex;flex-direction:column;gap:10px;max-width:600px;">
-        <button class="sq-btn" id="cv-a" onclick="checkCompetentie('A')"><span class="sq-letter">A</span><span>Competenties zijn breder en gaan over gedrag en houding. Skills zijn specifieker en meetbaarder.</span></button>
-        <button class="sq-btn" id="cv-b" onclick="checkCompetentie('B')"><span class="sq-letter">B</span><span>Competenties zijn hetzelfde als skills, alleen een ander woord.</span></button>
-        <button class="sq-btn" id="cv-c" onclick="checkCompetentie('C')"><span class="sq-letter">C</span><span>Skills zijn breder, competenties zijn specifieker.</span></button>
-      </div>
-      <div id="competentie-fb" class="sq-fb"></div>
+    <!-- Vraag 2 -->
+    <div id="vr2" style="display:none;margin-top:3rem;">
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:700;color:#1d1d1f;margin-bottom:0.5rem;">Noem een skill die je op je werk hebt geleerd — niet op school.</div>
+      <div style="font-size:14px;color:rgba(29,29,31,0.45);margin-bottom:1.4rem;">Denk aan iets wat je gewoon bent gaan doen.</div>
+      <input class="sq-input" placeholder="Bijv. prioriteiten stellen, omgaan met boze klanten..." id="sw1" style="max-width:540px;margin-bottom:1.4rem;display:block;">
+      <button class="sq-next" onclick="toonVraag(3)">Volgende →</button>
     </div>
 
-    <div style="margin-top:3rem;">
-      <div style="font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#1d1d1f;margin-bottom:1.2rem;">Hoeveel skills zijn er?</div>
-      <div style="display:flex;flex-direction:column;gap:10px;max-width:600px;">
-        <button class="sq-btn" id="hs-a" onclick="checkHoeveel('A')"><span class="sq-letter">A</span><span>Ongeveer 500</span></button>
-        <button class="sq-btn" id="hs-b" onclick="checkHoeveel('B')"><span class="sq-letter">B</span><span>Ongeveer 3.000</span></button>
-        <button class="sq-btn" id="hs-c" onclick="checkHoeveel('C')"><span class="sq-letter">C</span><span>Meer dan 13.000</span></button>
-        <button class="sq-btn" id="hs-d" onclick="checkHoeveel('D')"><span class="sq-letter">D</span><span>Meer dan 100.000</span></button>
+    <!-- Vraag 3 -->
+    <div id="vr3" style="display:none;margin-top:3rem;">
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:700;color:#1d1d1f;margin-bottom:0.5rem;">Hoeveel skills zijn er?</div>
+      <div style="font-size:14px;color:rgba(29,29,31,0.45);margin-bottom:1.4rem;">Wat denk je?</div>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:540px;">
+        <button class="sq-btn" onclick="toonVraag(4)"><span class="sq-letter">A</span><span>Ongeveer 500</span></button>
+        <button class="sq-btn" onclick="toonVraag(4)"><span class="sq-letter">B</span><span>Ongeveer 3.000</span></button>
+        <button class="sq-btn" onclick="toonVraag(4)"><span class="sq-letter">C</span><span>Meer dan 13.000</span></button>
+        <button class="sq-btn" onclick="toonVraag(4)"><span class="sq-letter">D</span><span>Meer dan 100.000</span></button>
       </div>
-      <div id="hoeveel-fb" class="sq-fb"></div>
     </div>
+
+    <!-- Vraag 4 -->
+    <div id="vr4" style="display:none;margin-top:3rem;">
+      <div style="font-size:clamp(20px,3vw,32px);font-weight:700;color:#1d1d1f;margin-bottom:0.5rem;">Wat is het verschil tussen skills en competenties?</div>
+      <div style="font-size:14px;color:rgba(29,29,31,0.45);margin-bottom:1.4rem;">Wat denk jij?</div>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:540px;">
+        <button class="sq-btn"><span class="sq-letter">A</span><span>Competenties zijn breder en gaan over gedrag. Skills zijn specifieker en meetbaarder.</span></button>
+        <button class="sq-btn"><span class="sq-letter">B</span><span>Competenties en skills zijn hetzelfde, alleen een ander woord.</span></button>
+        <button class="sq-btn"><span class="sq-letter">C</span><span>Skills zijn breder, competenties zijn specifieker.</span></button>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+function toonVraag(n) {
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('vr' + i);
+    if (el) el.style.display = 'none';
+  }
+  var next = document.getElementById('vr' + n);
+  if (next) {
+    next.style.display = 'block';
+    setTimeout(function() { next.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+  }
+}
+</script>
 
 <!-- BRUG -->
 <section style="background:#fff;min-height:auto;padding:clamp(3rem,6vh,5rem) clamp(2rem,8vw,8rem);">
