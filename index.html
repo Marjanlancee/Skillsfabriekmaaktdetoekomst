@@ -490,7 +490,7 @@ const beats=[
   {h1:'Werk verandert.',h2:'Daardoor hebben we andere skills nodig.',d:3800,jump:false},
   {h1:'Wat is <span style="color:#1B9AAA">nodig?</span>',h2:'',d:4000,jump:false},
   {h1:'Skills',h2:'als de gemeenschappelijke taal.',d:4000,jump:false},
-  {h1:'De Skillsfabriek',h2:'Regionaal Human Capital Intelligence Center voor de arbeidsmarkt van de toekomst.',d:4000,jump:false},
+  {h1:'De Skillsfabriek 2030',h2:'<span style="color:#1B9AAA">Regionaal Human Capital Intelligence Center voor de arbeidsmarkt van de toekomst.</span>',d:4000,jump:false},
 ];
 const h1El=document.getElementById('h1'),h2El=document.getElementById('h2');
 const pbar=document.getElementById('pbar'),dotsWrap=document.getElementById('dots');
@@ -515,11 +515,14 @@ function showBeat(i){
 }
 function advance(){
   if(paused)return;
+  if(idx>=beats.length-1){
+    scrollcue.classList.add('show');document.getElementById('hint').style.display='none';pbar.style.display='none';dotsWrap.style.display='none';
+    return;
+  }
   [h1El,h2El].forEach(el=>{el.style.transition='opacity 0.4s ease,transform 0.4s ease';el.style.opacity='0';el.style.transform='translateY(-10px)';});
   setTimeout(()=>{
     if(paused)return;
-    if(idx<beats.length-1){idx++;showBeat(idx);}
-    else{scrollcue.classList.add('show');document.getElementById('hint').style.display='none';pbar.style.display='none';dotsWrap.style.display='none';}
+    idx++;showBeat(idx);
   },450);
 }
 document.getElementById('hero').addEventListener('click',()=>{
@@ -545,4 +548,4 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 showBeat(0);
 </script>
 </body>
-</html> 
+</html>
