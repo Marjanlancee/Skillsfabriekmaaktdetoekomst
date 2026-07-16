@@ -515,6 +515,9 @@ function showBeat(i){
     setTimeout(()=>{h1El.style.transition='opacity 0.9s ease,transform 0.9s cubic-bezier(0.22,1,0.36,1)';h1El.style.opacity='1';h1El.style.transform='translateY(0)';},120);
     setTimeout(()=>{h2El.style.transition='opacity 0.9s ease,transform 0.9s cubic-bezier(0.22,1,0.36,1)';h2El.style.opacity='1';h2El.style.transform='translateY(0)';},380);
   }));
+  if(i===beats.length-1){
+    setTimeout(()=>{h1El.style.transition='opacity 1.4s ease,transform 1.4s ease';h1El.style.opacity='0';h1El.style.transform='translateY(-12px)';},2200);
+  }
   if(b.jump){setTimeout(()=>{jumper.classList.remove('go');void jumper.offsetWidth;jumper.style.opacity='1';jumper.classList.add('go');setTimeout(()=>{jumper.style.opacity='0';jumper.classList.remove('go');},1900);},1000);}
   pbar.style.transition='none';pbar.style.width='0%';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{pbar.style.transition=`width ${b.d}ms linear`;pbar.style.width='100%';}));
