@@ -109,9 +109,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.8rem clamp(1.5rem,
   <div class="nav-links">
     <a href="#vraagstukken">Wat er speelt</a>
     <a href="#skills">Skills</a>
+    <a href="#oplossing">Oplossing</a>
     <a href="#aanpak">Fases</a>
     <a href="#bouwstenen">Bouwstenen</a>
-    <a href="#oplossing">Oplossing</a>
   </div>
 </nav>
 
@@ -265,6 +265,68 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.8rem clamp(1.5rem,
   </div>
 </section>
 
+<!-- DE OPLOSSING -->
+<section style="background:#080B1F;color:#f5f5f7;" id="oplossing">
+  <div class="starfield"></div>
+  <div style="position:relative;z-index:2;">
+  <div class="section-eyebrow reveal" style="color:#1B9AAA;">Oplossing</div>
+  <h2 class="section-title reveal reveal-delay-1 glow-text" style="color:#f5f5f7;">De oplossing</h2>
+  <div class="divider reveal reveal-delay-2"></div>
+  <p class="reveal reveal-delay-2" style="font-size:17px;line-height:1.8;color:rgba(245,245,247,0.8);max-width:760px;margin-bottom:2.5rem;">De Skillsfabriek en Bright Work Solutions creëren één centrale regionale voorziening waarin bedrijven, werknemers, onderwijsinstellingen en overheden vanuit hetzelfde begrip van skills samenwerken:</p>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;" class="reveal reveal-delay-3">
+    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
+      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Bedrijven</div>
+      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Maken de huidige en toekomstige skillsbehoefte (future skills) inzichtelijk als basis voor werving en selectie, strategische personeelsplanning, om- en bijscholing en het versterken van leercultuur.</div>
+    </div>
+    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
+      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Werknemers</div>
+      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Krijgen beter zicht op hun kennis en vaardigheden, veranderende skillsvraag en ontwikkelmogelijkheden zodat ze kunnen werken aan duurzame inzetbaarheid.</div>
+    </div>
+    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
+      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Onderwijsinstellingen</div>
+      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Ontwikkelen vraaggestuurd en modulair leeraanbod op basis van datagedreven arbeidsmarktvraag, in samenwerking met werkgevers en werknemers.</div>
+    </div>
+    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
+      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Overheden</div>
+      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Beschikken over actuele, regionale arbeidsmarktinformatie gebaseerd op de behoefte van werkgevers, voor beleidsontwikkeling en het begeleiden van werkzoekenden.</div>
+    </div>
+  </div>
+
+  <div class="reveal reveal-delay-4" style="margin-top:3rem;display:flex;justify-content:center;">
+    <svg width="220" height="220" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="oplGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1B9AAA" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#1B9AAA" stop-opacity="0"/>
+        </radialGradient>
+        <mask id="oplMask">
+          <rect x="0" y="0" width="300" height="300" fill="black"/>
+          <path d="M150,150 L150,20 A130,130 0 0,1 240,60 Z" fill="white"/>
+        </mask>
+      </defs>
+      <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
+      <circle cx="150" cy="150" r="95" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
+      <circle cx="150" cy="150" r="60" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
+      <line x1="150" y1="10" x2="150" y2="290" stroke="rgba(245,245,247,0.09)" stroke-width="1" stroke-dasharray="2 7"/>
+      <line x1="10" y1="150" x2="290" y2="150" stroke="rgba(245,245,247,0.09)" stroke-width="1" stroke-dasharray="2 7"/>
+      <g style="transform-origin:150px 150px;animation:oplSweep 4.5s linear infinite;">
+        <circle cx="150" cy="150" r="130" fill="url(#oplGrad)" mask="url(#oplMask)"/>
+      </g>
+      <g transform="translate(150,30)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
+      <g transform="translate(270,150)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
+      <g transform="translate(150,270)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
+      <g transform="translate(30,150)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
+      <circle cx="150" cy="150" r="8" fill="#1B9AAA" style="animation:oplPulse 2.4s ease-in-out infinite;"/>
+      <style>
+        @keyframes oplSweep{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+        @keyframes oplPulse{ 0%,100%{ r:8; opacity:1;} 50%{ r:11; opacity:.65;} }
+      </style>
+    </svg>
+  </div>
+  </div>
+</section>
+
 <!-- AANPAK -->
 <section style="background:#EBF8FA;" id="aanpak">
   <h2 class="section-title reveal reveal-delay-1">Drie fases.</h2>
@@ -341,68 +403,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:0.8rem clamp(1.5rem,
       <a href="mailto:kim@brightworksolutions.nl" class="person-contact">kim@brightworksolutions.nl</a>
       <div style="font-size:15px;color:#3578C8;font-weight:500;margin-top:4px;">06 10405691</div>
     </div>
-  </div>
-</section>
-
-<!-- DE OPLOSSING -->
-<section style="background:#080B1F;color:#f5f5f7;" id="oplossing">
-  <div class="starfield"></div>
-  <div style="position:relative;z-index:2;">
-  <div class="section-eyebrow reveal" style="color:#1B9AAA;">Oplossing</div>
-  <h2 class="section-title reveal reveal-delay-1 glow-text" style="color:#f5f5f7;">De oplossing</h2>
-  <div class="divider reveal reveal-delay-2"></div>
-  <p class="reveal reveal-delay-2" style="font-size:17px;line-height:1.8;color:rgba(245,245,247,0.8);max-width:760px;margin-bottom:2.5rem;">De Skillsfabriek en Bright Work Solutions creëren één centrale regionale voorziening waarin bedrijven, werknemers, onderwijsinstellingen en overheden vanuit hetzelfde begrip van skills samenwerken:</p>
-
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:960px;" class="reveal reveal-delay-3">
-    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
-      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Bedrijven</div>
-      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Maken de huidige en toekomstige skillsbehoefte (future skills) inzichtelijk als basis voor werving en selectie, strategische personeelsplanning, om- en bijscholing en het versterken van leercultuur.</div>
-    </div>
-    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
-      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Werknemers</div>
-      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Krijgen beter zicht op hun kennis en vaardigheden, veranderende skillsvraag en ontwikkelmogelijkheden zodat ze kunnen werken aan duurzame inzetbaarheid.</div>
-    </div>
-    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
-      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Onderwijsinstellingen</div>
-      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Ontwikkelen vraaggestuurd en modulair leeraanbod op basis van datagedreven arbeidsmarktvraag, in samenwerking met werkgevers en werknemers.</div>
-    </div>
-    <div style="background:#101B36;border-radius:16px;padding:1.6rem 1.8rem;box-shadow:0 8px 32px rgba(10,20,50,0.25),0 2px 8px rgba(10,20,50,0.15);">
-      <div style="font-size:16px;font-weight:700;color:#1B9AAA;margin-bottom:8px;">Overheden</div>
-      <div style="font-size:14px;line-height:1.7;color:rgba(245,245,247,0.75);">Beschikken over actuele, regionale arbeidsmarktinformatie gebaseerd op de behoefte van werkgevers, voor beleidsontwikkeling en het begeleiden van werkzoekenden.</div>
-    </div>
-  </div>
-
-  <div class="reveal reveal-delay-4" style="margin-top:3rem;display:flex;justify-content:center;">
-    <svg width="220" height="220" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="oplGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#1B9AAA" stop-opacity="0.55"/>
-          <stop offset="100%" stop-color="#1B9AAA" stop-opacity="0"/>
-        </radialGradient>
-        <mask id="oplMask">
-          <rect x="0" y="0" width="300" height="300" fill="black"/>
-          <path d="M150,150 L150,20 A130,130 0 0,1 240,60 Z" fill="white"/>
-        </mask>
-      </defs>
-      <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
-      <circle cx="150" cy="150" r="95" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
-      <circle cx="150" cy="150" r="60" fill="none" stroke="rgba(245,245,247,0.15)" stroke-width="1"/>
-      <line x1="150" y1="10" x2="150" y2="290" stroke="rgba(245,245,247,0.09)" stroke-width="1" stroke-dasharray="2 7"/>
-      <line x1="10" y1="150" x2="290" y2="150" stroke="rgba(245,245,247,0.09)" stroke-width="1" stroke-dasharray="2 7"/>
-      <g style="transform-origin:150px 150px;animation:oplSweep 4.5s linear infinite;">
-        <circle cx="150" cy="150" r="130" fill="url(#oplGrad)" mask="url(#oplMask)"/>
-      </g>
-      <g transform="translate(150,30)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
-      <g transform="translate(270,150)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
-      <g transform="translate(150,270)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
-      <g transform="translate(30,150)"><circle r="6" fill="#f5f5f7" stroke="#1B9AAA" stroke-width="2"/></g>
-      <circle cx="150" cy="150" r="8" fill="#1B9AAA" style="animation:oplPulse 2.4s ease-in-out infinite;"/>
-      <style>
-        @keyframes oplSweep{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
-        @keyframes oplPulse{ 0%,100%{ r:8; opacity:1;} 50%{ r:11; opacity:.65;} }
-      </style>
-    </svg>
-  </div>
   </div>
 </section>
 
